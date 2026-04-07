@@ -7,7 +7,9 @@ from tqdm import tqdm
 from litellm import completion
 from multiprocessing import Pool
 from tenacity import retry, wait_exponential
+import litellm
 
+litellm._turn_on_debug()
 
 load_dotenv(override=True)
 
@@ -21,7 +23,7 @@ AVERAGE_CHUNK_SIZE = 100
 wait = wait_exponential(multiplier=1, min=10, max=240)
 
 
-WORKERS = 3
+WORKERS = 5
 
 openai = OpenAI()
 
@@ -70,7 +72,7 @@ def fetch_documents():
 
 
 def make_prompt(document):
-    how_many = (len(document["text"]) // AVERAGE_CHUNK_SIZE) + 1
+    how_many = (len(document["text"]) // AVERAGE_CHUNK_SIZE) + 3
     return f"""
 You take a document and you split the document into overlapping chunks for a KnowledgeBase.
 

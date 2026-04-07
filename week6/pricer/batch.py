@@ -61,7 +61,7 @@ class Batch:
 
     def make_file(self):
         batch_file = self.batches / self.filename
-        with batch_file.open("w") as f:
+        with batch_file.open("w",encoding="utf-8") as f:
             for item in self.items[self.start : self.end]:
                 f.write(self.make_jsonl(item))
                 f.write("\n")
@@ -94,7 +94,7 @@ class Batch:
 
     def apply_output(self):
         output_file = str(self.output / self.filename)
-        with open(output_file, "r") as f:
+        with open(output_file, "r", encoding="utf-8") as f:
             for line in f:
                 json_line = json.loads(line)
                 id = int(json_line["custom_id"])
