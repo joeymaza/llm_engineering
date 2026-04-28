@@ -1,0 +1,1 @@
+modal token set --token-id ak-kl1Ja9BYsDXIMO6YbAcSbZ --token-secret as-mectG9qLQVWUTZwq3RWZSt 
